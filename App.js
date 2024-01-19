@@ -1,21 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import LatestMovies from "./Components/LatestMovies";
+import NavBar from "./Components/Navbar";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import Home from "./Components/Home";
+import MovieSearch from "./Components/SearchBar";
+import SearchResults from "./Components/SearchResults";
+import MovieDetails from "./Components/MovieDetails";
+import BookingScreen from "./Components/BookingScreen";
+import Toast from "react-native-toast-message";
+import BookingDetails from "./Components/BookingDetails";
+// Assuming both files are in the same directory
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="MovieSearch" component={MovieSearch} />
+        <Stack.Screen name="SearchResults" component={SearchResults} />
+        <Stack.Screen name="MovieDetails" component={MovieDetails} />
+        <Stack.Screen name="BookingScreen" component={BookingScreen} />
+        <Stack.Screen name="BookingDetails" component={BookingDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
